@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.imageio.IIOException;
+import java.io.IOException;
+
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
@@ -49,5 +52,10 @@ public class HomeController {
     public String changePassword(String currentPassword, String newPassword, String reNewPassword) {
         String result = userService.changePassword(currentPassword, newPassword, reNewPassword);
         return "redirect:/" + result;
+    }
+
+    @GetMapping("/user-report")
+    public void userReport() throws IOException {
+        userService.generateUserReport();
     }
 }
